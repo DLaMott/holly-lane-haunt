@@ -5,6 +5,7 @@ import FogOverlay from "../components/FogOverlay.astro";
 import JackOLanterns from "../components/JackOLanterns.astro";
 import StatBadge from "../components/StatBadge.astro";
 import SceneCard from "../components/SceneCard.astro";
+import WarningTape from "../components/WarningTape.astro";
 import { stats, scenes } from "../data/site";
 
 import crowleysCrypt from "../assets/scenes/crowleys_crypt.jpg";
@@ -45,21 +46,25 @@ const sceneImages: Record<string, ImageMetadata> = {
   </section>
 
   <section class="section section--raised">
-    <div class="container grid grid--2">
-      <div class="card trail-card">
-        <h3>🎃 Front Trail</h3>
-        <p>
-          A friendlier, well-lit experience built with younger trick-or-treaters in mind, including a
-          dedicated inflatable trail just for them. Great for first-timers and little ones.
-        </p>
+    <div class="container">
+      <div class="grid grid--2">
+        <div class="card trail-card">
+          <h3>🎃 Front Trail</h3>
+          <p>
+            A friendlier, well-lit stretch built with younger trick-or-treaters in mind, plus a
+            dedicated inflatable trail just for the little ones. A gentle place to start, if you're
+            planning on stopping there.
+          </p>
+        </div>
+        <div class="card trail-card trail-card--intense">
+          <h3>🔪 Back Trail</h3>
+          <p>
+            This is where the trail stops being polite: fog, strobes, tight spaces, and scarers who
+            don't break character. Not recommended for young children, or anyone who scares easily.
+          </p>
+        </div>
       </div>
-      <div class="card trail-card trail-card--intense">
-        <h3>🔪 Back Trail</h3>
-        <p>
-          The full haunt experience: fog, strobes, tight spaces, and scarers who mean business. Not
-          recommended for young children or anyone who scares easily.
-        </p>
-      </div>
+      <WarningTape text="CAUTION — BACK TRAIL AHEAD — NOT FOR THE FAINT OF HEART" />
     </div>
   </section>
 
