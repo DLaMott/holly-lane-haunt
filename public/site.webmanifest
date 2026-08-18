@@ -1,0 +1,13 @@
+{
+  "name": "The Holly Lane Haunt",
+  "short_name": "Holly Lane Haunt",
+  "description": "Mocksville's free, volunteer-run haunted trail. 50+ animatronics, 15+ live scarers, 14 scenes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#08070b",
+  "theme_color": "#08070b",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

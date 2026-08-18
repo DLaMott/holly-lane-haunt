@@ -8,13 +8,13 @@ export const site = {
   shortName: "Holly Lane Haunt",
   tagline: "Mocksville's Free Community Haunted Trail",
   description:
-    "A free, volunteer-run haunted trail in Mocksville, NC featuring 100+ animatronics, 30 scarers, and 14 terrifying scenes. Open to the public, free admission, donations welcome.",
+    "A free, volunteer-run haunted trail in Mocksville, NC featuring 50+ animatronics, 30 scarers, and 14 terrifying scenes. Open to the public, free admission, donations welcome.",
   url: "https://hollylanehaunt.com",
 };
 
 export const stats = [
-  { label: "Animatronics", value: "100+" },
-  { label: "Live Scarers", value: "30+" },
+  { label: "Animatronics", value: "50+" },
+  { label: "Live Scarers", value: "15+" },
   { label: "Scenes", value: "14" },
   { label: "Admission", value: "Free" },
 ];
