@@ -1,0 +1,91 @@
+---
+// Decorative bats that swoop back and forth across the hero background.
+const bats = [
+  { top: "12%", left: "8%", flyX: 55, flyY: 10, scale: 0.9, duration: 13, delay: 0, flap: 0.42 },
+  { top: "22%", left: "70%", flyX: -60, flyY: 14, scale: 1.15, duration: 17, delay: 2, flap: 0.5 },
+  { top: "38%", left: "30%", flyX: 40, flyY: -12, scale: 0.7, duration: 11, delay: 4.5, flap: 0.36 },
+  { top: "8%", left: "45%", flyX: -35, flyY: 16, scale: 0.6, duration: 15, delay: 1.2, flap: 0.4 },
+  { top: "30%", left: "85%", flyX: -50, flyY: -10, scale: 1, duration: 19, delay: 6, flap: 0.46 },
+];
+---
+
+<div class="flying-bats" aria-hidden="true">
+  {
+    bats.map((bat) => (
+      <span
+        class="bat-fly"
+        style={`top:${bat.top}; left:${bat.left}; --fly-x:${bat.flyX}vw; --fly-y:${bat.flyY}vh; --scale:${bat.scale}; animation-duration:${bat.duration}s; animation-delay:${bat.delay}s;`}
+      >
+        <svg class="bat-flap" style={`animation-duration:${bat.flap}s;`} viewBox="0 0 100 46">
+          <path d="M50,28 C49,20 46,15 40,13 C42,10 40,6 36,5 C36,8 33,11 29,11 C27,7 22,3 14,2 C16,7 17,10 15,13 C10,10 4,10 1,14 C7,16 14,17 18,21 C12,19 5,21 2,26 C10,25 18,24 23,26 C17,29 13,33 13,37 C20,32 27,27 33,25 C36,26 39,29 41,32 L46,27 L50,33 L54,27 L59,32 C61,29 64,26 67,25 C73,27 80,32 87,37 C87,33 83,29 77,26 C82,24 90,25 98,26 C95,21 88,19 82,21 C86,17 93,16 99,14 C96,10 90,10 85,13 C83,10 84,7 86,5 C82,6 79,10 79,11 C75,11 72,7 70,2 C62,3 57,7 59,13 C53,15 50,20 50,28 Z" />
+        </svg>
+      </span>
+    ))
+  }
+</div>
+
+<style>
+  .flying-bats {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bat-fly {
+    position: absolute;
+    display: block;
+    width: calc(28px * var(--scale));
+    animation-name: bat-path;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+
+  .bat-flap {
+    display: block;
+    width: 100%;
+    height: auto;
+    fill: #352b45;
+    filter: drop-shadow(0 0 3px rgba(154, 99, 214, 0.25)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+    animation-name: bat-flap;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes bat-path {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(calc(var(--fly-x) * 0.45), calc(var(--fly-y) * -0.7)) rotate(-8deg);
+    }
+    50% {
+      transform: translate(calc(var(--fly-x) * 0.6), calc(var(--fly-y) * 0.3)) rotate(5deg);
+    }
+    75% {
+      transform: translate(calc(var(--fly-x) * 0.85), calc(var(--fly-y) * -0.5)) rotate(-6deg);
+    }
+    100% {
+      transform: translate(var(--fly-x), var(--fly-y)) rotate(3deg);
+    }
+  }
+
+  @keyframes bat-flap {
+    0%,
+    100% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(0.55);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bat-fly,
+    .bat-flap {
+      animation: none;
+    }
+  }
+</style>

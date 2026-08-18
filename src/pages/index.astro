@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import FogOverlay from "../components/FogOverlay.astro";
+import FlyingBats from "../components/FlyingBats.astro";
 import StatBadge from "../components/StatBadge.astro";
 import { site, stats, location, eventDates, links } from "../data/site";
 import heroPhoto from "../assets/scenes/crowleys_crypt.jpg";
@@ -53,6 +54,7 @@ const jsonLd = {
     </div>
     <div class="hero__scrim" aria-hidden="true"></div>
     <FogOverlay />
+    <FlyingBats />
     <div class="container hero__inner">
       <p class="eyebrow">Mocksville, North Carolina</p>
       <h1 class="flicker">

@@ -35,19 +35,19 @@ export const location = {
 
 // Flip `announced` to true and fill in real dates once they're confirmed for the season.
 export const eventDates = {
-  announced: false,
+  announced: true,
   year: 2026,
   weekendBefore: [
+    { date: "2026-10-23", label: "Friday, October 23" },
     { date: "2026-10-24", label: "Saturday, October 24" },
-    { date: "2026-10-25", label: "Sunday, October 25" },
   ],
   weekendOf: [
     { date: "2026-10-30", label: "Friday, October 30" },
     { date: "2026-10-31", label: "Saturday, October 31" },
   ],
-  hours: "6:00 PM – 10:00 PM",
+  hours: "6:30 PM – 10:00 PM",
   hoursNote:
-    "Hours are approximate based on past seasons and will be confirmed closer to the event.",
+    "Hours are subject to change based on weather and other conditions.",
 };
 
 export const links = {
