@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import FogOverlay from "../components/FogOverlay.astro";
 import JackOLanterns from "../components/JackOLanterns.astro";
+import PressStrip from "../components/PressStrip.astro";
 import { site, links } from "../data/site";
 import witchShack from "../assets/scenes/witch_shack.jpg";
 ---
@@ -76,6 +77,12 @@ import witchShack from "../assets/scenes/witch_shack.jpg";
         scare. Whichever version you choose, you'll leave with candy, a story to tell, and (hopefully)
         your nerves intact.
       </p>
+    </div>
+  </section>
+
+  <section class="section section--raised">
+    <div class="container">
+      <PressStrip heading="As Seen In Davie County" />
     </div>
   </section>
 </BaseLayout>

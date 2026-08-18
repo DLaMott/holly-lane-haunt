@@ -1,0 +1,63 @@
+---
+import { press } from "../data/site";
+
+interface Props {
+  heading?: string;
+}
+
+const { heading = "As Featured In" } = Astro.props as Props;
+---
+
+<div class="press-strip">
+  <p class="press-strip__heading">{heading}</p>
+  <ul class="press-strip__list">
+    {
+      press.map((mention) => (
+        <li>
+          <a href={mention.url} target="_blank" rel="noopener noreferrer">
+            {mention.outlet}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .press-strip {
+    text-align: center;
+  }
+
+  .press-strip__heading {
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    color: var(--color-text-faint);
+    margin-bottom: 1rem;
+  }
+
+  .press-strip__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem 2rem;
+  }
+
+  .press-strip__list a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+  }
+
+  .press-strip__list a:hover {
+    color: var(--color-pumpkin-bright);
+    border-bottom-color: var(--color-pumpkin);
+  }
+</style>

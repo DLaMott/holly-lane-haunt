@@ -57,6 +57,16 @@ export const links = {
   cashapp: "", // TODO: add real Cash App handle, e.g. "$HollyLaneHaunt"
 };
 
+export type PressMention = { outlet: string; url: string };
+
+// Local press coverage. One representative link per outlet (their most recent write-up).
+export const press: PressMention[] = [
+  { outlet: "Discover Davie County", url: "https://discoverdaviecounty.com/davie-county-events/holly-lane-haunt-mocksville/" },
+  { outlet: "OurDavie", url: "https://ourdavie.com/2025/10/20/get-haunted-on-holly-lane/" },
+  { outlet: "Town of Mocksville", url: "https://mocksvillenc.org/2023/10/09/have-a-ghoulishly-good-time-celebrate-halloween-in-mocksville/" },
+  { outlet: "Davie County Blog", url: "https://www.daviecountyblog.com/have-a-frightfully-delightful-time-celebrate-halloween-in-davie-county-2/" },
+];
+
 export type Faq = { question: string; answer: string };
 
 export const faqs: Faq[] = [

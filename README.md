@@ -12,7 +12,7 @@ Static marketing site for The Holly Lane Haunt, a free, volunteer-run haunted tr
 
 ## Updating content
 
-Almost everything editable (dates, stats, address, FAQs, scene list, social/donation links) lives in one file: **`src/data/site.ts`**. Update that file rather than hunting through page markup.
+Almost everything editable (dates, stats, address, FAQs, scene list, social/donation links, press mentions) lives in one file: **`src/data/site.ts`**. Update that file rather than hunting through page markup.
 
 Things to fill in once known:
 
@@ -20,6 +20,7 @@ Things to fill in once known:
 - `links.venmo` / `links.cashapp`: real donation handles.
 - `scenes`: 4 of the 13 have real names/photos (Crowley's Crypt, The Witch's Shack, House of Horror, The Fungal Trail); the rest are still placeholder names/descriptions until the full lineup is finalized.
 - `astro.config.mjs` / `site.ts` `url`: update to the real custom domain (e.g. `https://holly-lane-haunt.com`) once it's connected in Vercel.
+- `press`: add new local press write-ups here as they're published (used by the `PressStrip` component on Home and About).
 
 ## Images
 

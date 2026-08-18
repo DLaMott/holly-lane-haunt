@@ -4,6 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import FogOverlay from "../components/FogOverlay.astro";
 import FlyingBats from "../components/FlyingBats.astro";
 import StatBadge from "../components/StatBadge.astro";
+import PressStrip from "../components/PressStrip.astro";
 import { site, stats, location, eventDates, links } from "../data/site";
 import heroPhoto from "../assets/scenes/crowleys_crypt.jpg";
 
@@ -95,6 +96,12 @@ const jsonLd = {
       <div class="grid grid--stats">
         {stats.map((stat) => <StatBadge label={stat.label} value={stat.value} />)}
       </div>
+    </div>
+  </section>
+
+  <section class="section press-section">
+    <div class="container">
+      <PressStrip />
     </div>
   </section>
 
@@ -224,6 +231,10 @@ const jsonLd = {
     color: var(--color-pumpkin-bright);
     margin: 0;
     line-height: 1.4;
+  }
+
+  .press-section {
+    padding-block: 0 clamp(2rem, 4vw, 3rem);
   }
 
   .plan-links {
