@@ -22,7 +22,7 @@ const sceneImages: Record<string, ImageMetadata> = {
 
 <BaseLayout
   title="Attractions"
-  description="13 scenes, 100+ animatronics, and 30 live scarers. Explore what's waiting on The Holly Lane Haunt trail."
+  description="14 scenes, 100+ animatronics, and 30+ live scarers. Explore what's waiting on The Holly Lane Haunt trail."
 >
   <section class="section hero-band">
     <FogOverlay />
@@ -31,7 +31,7 @@ const sceneImages: Record<string, ImageMetadata> = {
       <div class="hero-band__intro">
         <div class="hero-band__copy">
           <p class="eyebrow">The Trail</p>
-          <h1>13 Scenes. Zero Mercy.</h1>
+          <h1>14 Scenes. Zero <span class="hero-band__accent">Mercy</span>.</h1>
           <p class="section-lead">
             From a gentle welcome to a full-blown gauntlet of animatronics and live scarers, here's what
             awaits on the trail.
@@ -96,6 +96,10 @@ const sceneImages: Record<string, ImageMetadata> = {
 
   .hero-band__intro {
     position: relative;
+  }
+
+  .hero-band__accent {
+    color: var(--color-blood-bright);
   }
 
   .stats-block {

@@ -8,14 +8,14 @@ export const site = {
   shortName: "Holly Lane Haunt",
   tagline: "Mocksville's Free Community Haunted Trail",
   description:
-    "A free, volunteer-run haunted trail in Mocksville, NC featuring 100+ animatronics, 30 scarers, and 13 terrifying scenes. Open to the public, free admission, donations welcome.",
+    "A free, volunteer-run haunted trail in Mocksville, NC featuring 100+ animatronics, 30 scarers, and 14 terrifying scenes. Open to the public, free admission, donations welcome.",
   url: "https://holly-lane-haunt.vercel.app", // TODO: update once custom domain is connected
 };
 
 export const stats = [
   { label: "Animatronics", value: "100+" },
-  { label: "Live Scarers", value: "30" },
-  { label: "Scenes", value: "13" },
+  { label: "Live Scarers", value: "30+" },
+  { label: "Scenes", value: "14" },
   { label: "Admission", value: "Free" },
 ];
 
@@ -113,20 +113,20 @@ export const faqs: Faq[] = [
 
 export type Scene = { number: number; name: string; description: string; photoKey?: string };
 
-// 13 scenes. A few have real photos (see photoKey -> src/pages/attractions.astro image map).
-// The rest are placeholder names/descriptions until the full lineup is finalized.
+// 14 scenes. A few have real photos (see photoKey -> src/pages/attractions.astro image map).
 export const scenes: Scene[] = [
   { number: 1, name: "Crowley's Crypt", description: "The gates to the Crowley family mausoleum, your welcome into Holly Lane, guarded by a pair of very unfriendly gargoyles.", photoKey: "crowleysCrypt" },
-  { number: 2, name: "Pumpkin Patch", description: "A glowing patch of jack-o-lanterns hides more than just vegetables." },
-  { number: 3, name: "The Inflatable Trail", description: "A separate, gentler path built just for our youngest guests." },
-  { number: 4, name: "The Witch's Shack", description: "Flying lessons by appointment only. A glowing green witch and her crooked fence mark the edge of her territory.", photoKey: "witchShack" },
-  { number: 5, name: "House of Horror", description: "Step into the blacklight clown maze, where everything glows and nothing is where you think it is.", photoKey: "clownMaze" },
-  { number: 6, name: "The Butcher's Den", description: "You can smell this one before you see it." },
-  { number: 7, name: "The Asylum", description: "Padded walls, flickering lights, and patients who won't stay in their rooms." },
-  { number: 8, name: "The Fungal Trail", description: "Something in the dark has been growing. It notices you before you notice it.", photoKey: "fungalTrail" },
-  { number: 9, name: "The Ritual Grounds", description: "Deep in the trees, a coven is finishing a ritual, and you've interrupted it." },
-  { number: 10, name: "The Animatronic Gauntlet", description: "Dozens of animatronics packed into one corridor of chaos." },
-  { number: 11, name: "The Crawlspace", description: "Low light, tight spaces, and things that crawl faster than you'd like." },
-  { number: 12, name: "The Chainsaw Yard", description: "The trail's most intense scare zone, not for the faint of heart." },
-  { number: 13, name: "The Exit... Or Is It?", description: "You made it out. Candy's waiting. Probably safe now." },
+  { number: 2, name: "Graveside Hollow", description: "A fog-choked hollow of leaning headstones, where the ground doesn't feel done settling." },
+  { number: 3, name: "Swamp Water Cauldron", description: "A bubbling backwoods cauldron deep in the muck, tended by something that's been stirring far too long.", photoKey: "witchShack" },
+  { number: 4, name: "Suicide By Spider", description: "Web after web after web. Turning back means admitting defeat; pressing on means finding out what's spinning them." },
+  { number: 5, name: "Electrocution Alley", description: "Buzzing wires, sparking fixtures, and a corridor that hums louder the deeper you go." },
+  { number: 6, name: "The House of Horror", description: "Step into the blacklight clown maze, where everything glows and nothing is where you think it is.", photoKey: "clownMaze" },
+  { number: 7, name: "Derry Sewer System", description: "Down where the pipes echo, something's been waiting in the dark since long before you got here." },
+  { number: 8, name: "Seventh Circus of Hell", description: "Ringmasters, red light, and performers who never actually clocked out." },
+  { number: 9, name: "Insidious", description: "The lights flicker, the shadows don't match the room, and something's been following you since the entrance." },
+  { number: 10, name: "Silent Woods", description: "The trail goes quiet here. Too quiet. Whatever's watching from the trees knows better than to make a sound.", photoKey: "fungalTrail" },
+  { number: 11, name: "Gabe's Chop Shop", description: "A working butcher shop that stopped asking where the meat comes from a long time ago. Gabe just keeps sharpening." },
+  { number: 12, name: "LaMott Industries", description: "A research lab that spent years dissecting things that shouldn't exist. Containment didn't hold, and neither did the specimens." },
+  { number: 13, name: "NEW FOR 2026 (Name Not Released)", description: "Under construction and top secret. The name isn't out yet, but the crew building it hasn't slept much this fall." },
+  { number: 14, name: "NEW FOR 2026 (Name Not Released)", description: "Another brand-new build for this season, kept under wraps until opening night." },
 ];

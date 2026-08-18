@@ -18,7 +18,7 @@ import witchShack from "../assets/scenes/witch_shack.jpg";
       <div class="hero-band__intro">
         <div class="hero-band__copy">
           <p class="eyebrow">Our Story</p>
-          <h1>Built By Neighbors, For The Neighborhood</h1>
+          <h1>Built By <span class="hero-band__accent">Ghouls</span>, For The Neighborhood</h1>
           <p class="section-lead">
             {site.name} started the way most great neighborhood traditions do: a handful of
             families deciding Halloween deserved more than a bowl of candy on the porch.
@@ -31,7 +31,7 @@ import witchShack from "../assets/scenes/witch_shack.jpg";
   <section class="container">
     <figure class="about-photo card">
       <Image src={witchShack} alt="A glowing green witch animatronic guards the fence line on the Holly Lane Haunt trail" width={1100} height={620} loading="eager" />
-      <figcaption>The witch's fence line, one of 13 scenes built entirely by volunteers.</figcaption>
+      <figcaption>Part of the Swamp Water Cauldron scene, one of 14 scenes built entirely by volunteers.</figcaption>
     </figure>
   </section>
 
@@ -42,7 +42,7 @@ import witchShack from "../assets/scenes/witch_shack.jpg";
         <p>
           What began as a small yard display has grown, year after year, into a full haunted trail
           winding through the neighborhood, now featuring over 100 animatronics, 30 live
-          scarers, and 13 distinct scenes. Every prop, every scene, every scare is designed, built,
+          scarers, and 14 distinct scenes. Every prop, every scene, every scare is designed, built,
           and run entirely by volunteers who spend months preparing for just a handful of nights each
           October.
         </p>
@@ -100,6 +100,10 @@ import witchShack from "../assets/scenes/witch_shack.jpg";
   .hero-band__copy {
     position: relative;
     z-index: 1;
+  }
+
+  .hero-band__accent {
+    color: var(--color-blood-bright);
   }
 
   .about-photo {

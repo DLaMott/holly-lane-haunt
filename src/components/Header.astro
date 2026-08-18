@@ -12,13 +12,16 @@ const navItems = [
 ];
 
 const currentPath = Astro.url.pathname;
+const brandSplitAt = site.shortName.lastIndexOf(" ");
+const brandLead = site.shortName.slice(0, brandSplitAt);
+const brandAccent = site.shortName.slice(brandSplitAt + 1);
 ---
 
 <header class="site-header">
   <div class="container site-header__bar">
     <a href="/" class="brand">
       <Image class="brand__mark" src={logo} alt="" width={44} height={44} loading="eager" />
-      <span class="brand__name">{site.shortName}</span>
+      <span class="brand__name">{brandLead} <span class="brand__accent">{brandAccent}</span></span>
     </a>
 
     <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
@@ -77,6 +80,10 @@ const currentPath = Astro.url.pathname;
     width: 44px;
     height: 44px;
     border-radius: 50%;
+  }
+
+  .brand__accent {
+    color: var(--color-blood-bright);
   }
 
   .brand__name {
