@@ -1,0 +1,74 @@
+---
+// Generates a corner cobweb as spokes + slightly sagging rings, mirrored per corner.
+const SIZE = 130;
+const SPOKES = 7;
+const RING_FRACTIONS = [0.36, 0.62, 0.88];
+const SAG = 6;
+
+type Point = { x: number; y: number };
+
+function spokePoint(i: number): Point {
+  const theta = (i / (SPOKES - 1)) * (Math.PI / 2);
+  return { x: SIZE * Math.sin(theta), y: SIZE * Math.cos(theta) };
+}
+
+const spokes = Array.from({ length: SPOKES }, (_, i) => spokePoint(i));
+
+const spokePaths = spokes.map((p) => `M0,0 L${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+
+const ringPaths = RING_FRACTIONS.map((frac) => {
+  const pts = spokes.map((p) => ({ x: p.x * frac, y: p.y * frac }));
+  let d = `M${pts[0].x.toFixed(1)},${pts[0].y.toFixed(1)}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const a = pts[i];
+    const b = pts[i + 1];
+    const mx = (a.x + b.x) / 2;
+    const my = (a.y + b.y) / 2;
+    const dist = Math.hypot(b.x - a.x, b.y - a.y);
+    const nx = -(b.y - a.y) / dist;
+    const ny = (b.x - a.x) / dist;
+    const cx = mx - nx * SAG;
+    const cy = my - ny * SAG;
+    d += ` Q${cx.toFixed(1)},${cy.toFixed(1)} ${b.x.toFixed(1)},${b.y.toFixed(1)}`;
+  }
+  return d;
+}).join(" ");
+
+const corners = [
+  { style: "top:0; left:0;" },
+  { style: "top:0; right:0; transform: scaleX(-1);" },
+];
+---
+
+<div class="cobwebs" aria-hidden="true">
+  {
+    corners.map((corner) => (
+      <svg class="cobweb" style={corner.style} viewBox={`0 0 ${SIZE} ${SIZE}`}>
+        <path d={spokePaths} />
+        <path d={ringPaths} />
+      </svg>
+    ))
+  }
+</div>
+
+<style>
+  .cobwebs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .cobweb {
+    position: absolute;
+    width: clamp(70px, 9vw, 130px);
+    height: auto;
+    fill: none;
+    stroke: rgba(224, 218, 232, 0.28);
+    stroke-width: 1;
+    stroke-linecap: round;
+  }
+</style>

@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import FogOverlay from "../components/FogOverlay.astro";
+import JackOLanterns from "../components/JackOLanterns.astro";
 import { site, links } from "../data/site";
 import witchShack from "../assets/scenes/witch_shack.jpg";
 ---
@@ -10,13 +12,19 @@ import witchShack from "../assets/scenes/witch_shack.jpg";
   description="The story behind The Holly Lane Haunt, a free, volunteer-run haunted trail built by a Mocksville, NC neighborhood for the whole community."
 >
   <section class="section hero-band">
+    <FogOverlay />
+    <JackOLanterns />
     <div class="container">
-      <p class="eyebrow">Our Story</p>
-      <h1>Built By Neighbors, For The Neighborhood</h1>
-      <p class="section-lead">
-        {site.name} started the way most great neighborhood traditions do: a handful of
-        families deciding Halloween deserved more than a bowl of candy on the porch.
-      </p>
+      <div class="hero-band__intro">
+        <div class="hero-band__copy">
+          <p class="eyebrow">Our Story</p>
+          <h1>Built By Neighbors, For The Neighborhood</h1>
+          <p class="section-lead">
+            {site.name} started the way most great neighborhood traditions do: a handful of
+            families deciding Halloween deserved more than a bowl of candy on the porch.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -74,7 +82,24 @@ import witchShack from "../assets/scenes/witch_shack.jpg";
 
 <style>
   .hero-band {
+    position: relative;
+    overflow: hidden;
     padding-top: clamp(3rem, 7vw, 5rem);
+    padding-bottom: 6rem;
+  }
+
+  .hero-band .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-band__intro {
+    position: relative;
+  }
+
+  .hero-band__copy {
+    position: relative;
+    z-index: 1;
   }
 
   .about-photo {

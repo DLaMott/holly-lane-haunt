@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Cobwebs from "../components/Cobwebs.astro";
 import "../styles/global.css";
 import { site } from "../data/site";
 
@@ -54,6 +55,7 @@ const jsonLdEntries = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
 
     <Header />
     <main id="main">
+      <Cobwebs />
       <slot />
     </main>
     <Footer />

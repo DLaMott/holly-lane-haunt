@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import FogOverlay from "../components/FogOverlay.astro";
+import JackOLanterns from "../components/JackOLanterns.astro";
 import { location, links, eventDates } from "../data/site";
 
 const bbox = `${location.lng - 0.006},${location.lat - 0.004},${location.lng + 0.006},${location.lat + 0.004}`;
@@ -12,14 +14,20 @@ const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${enco
   description={`Find The Holly Lane Haunt at ${location.addressFull}. Parking tips and directions for our free haunted trail.`}
 >
   <section class="section hero-band">
+    <FogOverlay />
+    <JackOLanterns />
     <div class="container">
-      <p class="eyebrow">Find Us</p>
-      <h1>{location.addressFull}</h1>
-      <p class="section-lead">{location.neighborhood}. Follow the fog, and the line of trick-or-treaters.</p>
-      <div class="hero__ctas">
-        <a class="btn btn--primary" href={directionsUrl} target="_blank" rel="noopener noreferrer">
-          Get Directions
-        </a>
+      <div class="hero-band__intro">
+        <div class="hero-band__copy">
+          <p class="eyebrow">Find Us</p>
+          <h1>{location.addressFull}</h1>
+          <p class="section-lead">{location.neighborhood}. Follow the fog, and the line of trick-or-treaters.</p>
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href={directionsUrl} target="_blank" rel="noopener noreferrer">
+              Get Directions
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -63,7 +71,24 @@ const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${enco
 
 <style>
   .hero-band {
+    position: relative;
+    overflow: hidden;
     padding-top: clamp(3rem, 7vw, 5rem);
+    padding-bottom: 6rem;
+  }
+
+  .hero-band .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-band__intro {
+    position: relative;
+  }
+
+  .hero-band__copy {
+    position: relative;
+    z-index: 1;
   }
 
   .hero__ctas {
