@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FaqItem from "../components/FaqItem.astro";
+import { faqs } from "../data/site";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="FAQs"
+  description="Frequently asked questions about The Holly Lane Haunt: cost, kid-friendliness, parking, accessibility, and what to expect."
+  jsonLd={jsonLd}
+>
+  <section class="section hero-band">
+    <div class="container">
+      <p class="eyebrow">Good To Know</p>
+      <h1>Frequently Asked Questions</h1>
+      <p class="section-lead">Everything you need to know before you visit. Still have a question? Reach out on Facebook.</p>
+    </div>
+  </section>
+
+  <section class="section section--raised">
+    <div class="container faq-list">
+      {faqs.map((faq) => <FaqItem question={faq.question} answer={faq.answer} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-band {
+    padding-top: clamp(3rem, 7vw, 5rem);
+    padding-bottom: 0;
+  }
+
+  .faq-list {
+    max-width: 780px;
+  }
+</style>

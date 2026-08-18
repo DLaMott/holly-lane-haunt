@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { location, links, eventDates } from "../data/site";
+
+const bbox = `${location.lng - 0.006},${location.lat - 0.004},${location.lng + 0.006},${location.lat + 0.004}`;
+const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${location.lat},${location.lng}`;
+const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.addressFull)}`;
+---
+
+<BaseLayout
+  title="Location"
+  description={`Find The Holly Lane Haunt at ${location.addressFull}. Parking tips and directions for our free haunted trail.`}
+>
+  <section class="section hero-band">
+    <div class="container">
+      <p class="eyebrow">Find Us</p>
+      <h1>{location.addressFull}</h1>
+      <p class="section-lead">{location.neighborhood}. Follow the fog, and the line of trick-or-treaters.</p>
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href={directionsUrl} target="_blank" rel="noopener noreferrer">
+          Get Directions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--raised">
+    <div class="container">
+      <div class="map-frame card">
+        <iframe
+          title="Map to The Holly Lane Haunt"
+          src={mapSrc}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid grid--2">
+      <div>
+        <h2>Parking &amp; Getting There</h2>
+        <p>{location.parkingNotes}</p>
+      </div>
+      <div class="card">
+        <h3>Hours</h3>
+        <p>
+          {
+            eventDates.announced
+              ? eventDates.hours
+              : `Typically ${eventDates.hours} on open nights (final hours confirmed closer to the event).`
+          }
+        </p>
+        <p class="section-lead">
+          👻 Follow our <a href={links.facebook} target="_blank" rel="noopener noreferrer">Facebook page</a> for
+          real-time updates on open nights, weather delays, and the official {eventDates.year} dates.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-band {
+    padding-top: clamp(3rem, 7vw, 5rem);
+  }
+
+  .hero__ctas {
+    margin-top: 1.5rem;
+  }
+
+  .map-frame {
+    padding: 0;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+  }
+
+  .map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(0.25) contrast(1.05);
+  }
+</style>

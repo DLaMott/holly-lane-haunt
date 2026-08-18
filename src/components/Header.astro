@@ -1,0 +1,191 @@
+---
+import { Image } from "astro:assets";
+import { site } from "../data/site";
+import logo from "../assets/logo.png";
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/about/", label: "About" },
+  { href: "/attractions/", label: "Attractions" },
+  { href: "/location/", label: "Location" },
+  { href: "/faqs/", label: "FAQs" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a href="/" class="brand">
+      <Image class="brand__mark" src={logo} alt="" width={44} height={44} loading="eager" />
+      <span class="brand__name">{site.shortName}</span>
+    </a>
+
+    <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+      <span class="visually-hidden">Toggle navigation menu</span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+
+    <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+      <ul>
+        {
+          navItems.map((item) => {
+            const isActive =
+              item.href === "/" ? currentPath === "/" : currentPath.startsWith(item.href);
+            return (
+              <li>
+                <a href={item.href} aria-current={isActive ? "page" : undefined}>
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(8, 7, 11, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .site-header__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 0.85rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .brand__mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+  }
+
+  .brand__name {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .nav-toggle__bar {
+    display: block;
+    height: 2px;
+    margin-inline: 9px;
+    background: var(--color-text);
+    border-radius: 2px;
+  }
+
+  .primary-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.75rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .primary-nav a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding-block: 0.25rem;
+    border-bottom: 2px solid transparent;
+  }
+
+  .primary-nav a:hover,
+  .primary-nav a[aria-current="page"] {
+    color: var(--color-pumpkin-bright);
+    border-bottom-color: var(--color-pumpkin);
+  }
+
+  @media (max-width: 760px) {
+    .nav-toggle {
+      display: inline-flex;
+    }
+
+    .primary-nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--color-bg-raised);
+      border-bottom: 1px solid var(--color-border);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+
+    .primary-nav.is-open {
+      max-height: 400px;
+    }
+
+    .primary-nav ul {
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 1.25rem 1.25rem;
+    }
+
+    .primary-nav li {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .primary-nav a {
+      display: block;
+      padding: 0.9rem 0;
+    }
+  }
+
+  @media (min-width: 761px) {
+    .nav-toggle {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById("nav-toggle");
+  const nav = document.getElementById("primary-nav");
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = nav?.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
+  });
+
+  nav?.addEventListener("click", (event) => {
+    if ((event.target as HTMLElement).tagName === "A") {
+      nav.classList.remove("is-open");
+      toggle?.setAttribute("aria-expanded", "false");
+    }
+  });
+</script>

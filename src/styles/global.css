@@ -1,0 +1,307 @@
+@import url("https://fonts.googleapis.com/css2?family=Creepster&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap");
+
+:root {
+  --color-bg: #08070b;
+  --color-bg-raised: #121017;
+  --color-bg-card: #17141d;
+  --color-border: #2c2733;
+
+  --color-text: #ece7e0;
+  --color-text-muted: #b3aab8;
+  --color-text-faint: #7c7486;
+
+  --color-pumpkin: #ff6a1a;
+  --color-pumpkin-bright: #ff8b3d;
+  --color-blood: #a3121a;
+  --color-blood-bright: #d81e2c;
+  --color-purple: #6d3fa0;
+  --color-purple-bright: #9a63d6;
+  --color-sickly-green: #7ac74f;
+
+  --font-display: "Creepster", "Nosifer", cursive;
+  --font-body: "Mulish", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --max-width: 1180px;
+  --radius: 10px;
+
+  --shadow-glow-pumpkin: 0 0 24px rgba(255, 106, 26, 0.35);
+  --shadow-glow-blood: 0 0 24px rgba(216, 30, 44, 0.3);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--color-pumpkin-bright);
+  text-decoration-thickness: from-font;
+}
+
+a:hover {
+  color: var(--color-pumpkin);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.5px;
+  color: var(--color-text);
+  text-shadow: 0 0 18px rgba(255, 106, 26, 0.25);
+  margin: 0 0 0.6em;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 6vw + 1rem, 5rem);
+}
+
+h2 {
+  font-size: clamp(1.9rem, 3.5vw + 1rem, 2.9rem);
+  color: var(--color-pumpkin-bright);
+}
+
+h3 {
+  font-size: clamp(1.3rem, 1.5vw + 1rem, 1.7rem);
+}
+
+p {
+  margin: 0 0 1em;
+  color: var(--color-text-muted);
+  max-width: 68ch;
+}
+
+.section-lead p {
+  max-width: 62ch;
+}
+
+ul,
+ol {
+  color: var(--color-text-muted);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.section {
+  padding-block: clamp(3rem, 6vw, 6rem);
+  position: relative;
+}
+
+.section--raised {
+  background: linear-gradient(180deg, transparent, var(--color-bg-raised) 12%, var(--color-bg-raised) 88%, transparent);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--color-blood-bright);
+  margin-bottom: 0.75rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-body);
+  font-weight: 800;
+  text-decoration: none;
+  padding: 0.85em 1.6em;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--color-pumpkin), var(--color-blood-bright));
+  color: #14100a;
+  box-shadow: var(--shadow-glow-pumpkin);
+}
+
+.btn--primary:hover {
+  color: #14100a;
+  box-shadow: 0 0 34px rgba(255, 106, 26, 0.55);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-pumpkin);
+  color: var(--color-pumpkin-bright);
+}
+
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.grid--stats {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.grid--2 {
+  grid-template-columns: 1fr;
+}
+
+.grid--scenes {
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+
+@media (min-width: 760px) {
+  .grid--2 {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--color-pumpkin);
+  color: #14100a;
+  padding: 0.6em 1em;
+  border-radius: 6px;
+  font-weight: 700;
+  z-index: 1000;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* --- Decorative flicker on hero titles --- */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 54%, 56%, 100% { opacity: 1; }
+  20%, 22%, 55% { opacity: 0.55; }
+}
+
+.flicker {
+  animation: flicker 6s infinite;
+}
+
+/* --- Drifting fog overlay --- */
+.fog {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fog::before,
+.fog::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  width: 180%;
+  height: 140%;
+  background: radial-gradient(ellipse at center, rgba(109, 63, 160, 0.18), transparent 60%);
+  animation: drift 40s linear infinite;
+}
+
+.fog::after {
+  top: 10%;
+  background: radial-gradient(ellipse at center, rgba(255, 106, 26, 0.08), transparent 55%);
+  animation-duration: 55s;
+  animation-direction: reverse;
+}
+
+@keyframes drift {
+  0% { transform: translateX(-30%); }
+  50% { transform: translateX(10%); }
+  100% { transform: translateX(-30%); }
+}
+
+/* --- Grain / vignette texture --- */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  box-shadow: inset 0 0 18vw rgba(0, 0, 0, 0.75);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flicker,
+  .fog::before,
+  .fog::after {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

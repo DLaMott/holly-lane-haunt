@@ -1,0 +1,249 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FogOverlay from "../components/FogOverlay.astro";
+import StatBadge from "../components/StatBadge.astro";
+import { site, stats, location, eventDates, links } from "../data/site";
+import heroPhoto from "../assets/scenes/crowleys_crypt.jpg";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: site.name,
+  description: site.description,
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  eventStatus: "https://schema.org/EventScheduled",
+  isAccessibleForFree: true,
+  location: {
+    "@type": "Place",
+    name: site.name,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: location.address1,
+      addressLocality: location.addressCity,
+      addressRegion: location.addressState,
+      postalCode: location.addressZip,
+      addressCountry: "US",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: location.lat,
+      longitude: location.lng,
+    },
+  },
+  organizer: {
+    "@type": "Organization",
+    name: site.name,
+    url: site.url,
+    sameAs: [links.facebook],
+  },
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+  },
+};
+---
+
+<BaseLayout title={site.name} jsonLd={jsonLd}>
+  <section class="hero">
+    <div class="hero__photo">
+      <Image src={heroPhoto} alt="" width={1600} height={1000} loading="eager" fetchpriority="high" />
+    </div>
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <FogOverlay />
+    <div class="container hero__inner">
+      <p class="eyebrow">Mocksville, North Carolina</p>
+      <h1 class="flicker">
+        The Holly Lane<br /><span class="hero__accent">Haunt</span>
+      </h1>
+      <p class="hero__tagline">{site.tagline}. Free admission, open to everyone brave enough.</p>
+
+      <div class="hero__banner" role="note">
+        {
+          eventDates.announced ? (
+            <p>
+              <strong>Open:</strong>{" "}
+              {eventDates.weekendBefore.map((d) => d.label).join(" & ")} and{" "}
+              {eventDates.weekendOf.map((d) => d.label).join(" & ")} &middot; {eventDates.hours}
+            </p>
+          ) : (
+            <p>
+              👻 {eventDates.year} dates coming soon. Historically we run the weekend before Halloween
+              and the weekend of Halloween. Follow us on{" "}
+              <a href={links.facebook} target="_blank" rel="noopener noreferrer">
+                Facebook
+              </a>{" "}
+              for the official announcement.
+            </p>
+          )
+        }
+      </div>
+
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href="/location/">Get Directions</a>
+        <a class="btn btn--ghost" href="/attractions/">See the Attractions</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--stats">
+        {stats.map((stat) => <StatBadge label={stat.label} value={stat.value} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--raised">
+    <div class="container grid grid--2">
+      <div>
+        <p class="eyebrow">What Is It</p>
+        <h2>A Free, Family &amp; Volunteer Built Nightmare</h2>
+        <p>
+          The Holly Lane Haunt is a free, community-built haunted trail right in the heart of a
+          Mocksville neighborhood. Every year, local volunteers spend months building new scenes,
+          rigging animatronics, and training scarers to bring {location.neighborhood} to
+          life, or well, un-life.
+        </p>
+        <p>
+          The front of the trail is built to welcome families and younger trick-or-treaters, with a
+          dedicated inflatable trail for the little ones. Head to the back, and things get a lot more
+          intense: fog, strobes, chainsaws (props, we promise), and scarers who take their jobs
+          very seriously.
+        </p>
+        <a class="btn btn--ghost" href="/about/">Read Our Story</a>
+      </div>
+      <div class="card hero__quote">
+        <p class="hero__quote-text">
+          &ldquo;100+ animatronics. 30 live scarers. 13 scenes. All free, all built by your
+          neighbors.&rdquo;
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Plan Your Visit</p>
+      <h2>Everything You Need To Know</h2>
+      <div class="grid grid--scenes plan-links">
+        <a class="card plan-link" href="/attractions/">
+          <h3>Attractions</h3>
+          <p>Explore all 13 scenes and what to expect front-to-back on the trail.</p>
+        </a>
+        <a class="card plan-link" href="/location/">
+          <h3>Location</h3>
+          <p>Find us at {location.addressFull} with parking tips and a map.</p>
+        </a>
+        <a class="card plan-link" href="/faqs/">
+          <h3>FAQs</h3>
+          <p>Cost, accessibility, what to bring, and more of your questions answered.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    padding-block: clamp(4rem, 10vw, 8rem) clamp(3rem, 6vw, 5rem);
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+
+  .hero__photo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+  }
+
+  .hero__photo :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    opacity: 0.55;
+  }
+
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(8, 7, 11, 0.55) 0%, rgba(8, 7, 11, 0.75) 55%, var(--color-bg) 100%),
+      radial-gradient(ellipse at 50% -10%, rgba(163, 18, 26, 0.3), transparent 55%);
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 46rem;
+  }
+
+  .hero__accent {
+    color: var(--color-blood-bright);
+  }
+
+  .hero__tagline {
+    font-size: 1.15rem;
+    max-width: 42ch;
+  }
+
+  .hero__banner {
+    border: 1px solid var(--color-border);
+    background: rgba(23, 20, 29, 0.7);
+    border-radius: var(--radius);
+    padding: 0.9rem 1.15rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .hero__banner p {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 0.95rem;
+  }
+
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hero__quote {
+    border-color: var(--color-pumpkin);
+    box-shadow: var(--shadow-glow-pumpkin);
+  }
+
+  .hero__quote-text {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--color-pumpkin-bright);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .plan-links {
+    margin-top: 1.5rem;
+  }
+
+  .plan-link {
+    text-decoration: none;
+    display: block;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .plan-link:hover {
+    border-color: var(--color-pumpkin);
+    transform: translateY(-3px);
+  }
+
+  .plan-link h3 {
+    color: var(--color-pumpkin-bright);
+  }
+
+  .plan-link p {
+    margin: 0;
+  }
+</style>

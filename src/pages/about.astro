@@ -1,0 +1,97 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site, links } from "../data/site";
+import witchShack from "../assets/scenes/witch_shack.jpg";
+---
+
+<BaseLayout
+  title="About"
+  description="The story behind The Holly Lane Haunt, a free, volunteer-run haunted trail built by a Mocksville, NC neighborhood for the whole community."
+>
+  <section class="section hero-band">
+    <div class="container">
+      <p class="eyebrow">Our Story</p>
+      <h1>Built By Neighbors, For The Neighborhood</h1>
+      <p class="section-lead">
+        {site.name} started the way most great neighborhood traditions do: a handful of
+        families deciding Halloween deserved more than a bowl of candy on the porch.
+      </p>
+    </div>
+  </section>
+
+  <section class="container">
+    <figure class="about-photo card">
+      <Image src={witchShack} alt="A glowing green witch animatronic guards the fence line on the Holly Lane Haunt trail" width={1100} height={620} loading="eager" />
+      <figcaption>The witch's fence line, one of 13 scenes built entirely by volunteers.</figcaption>
+    </figure>
+  </section>
+
+  <section class="section section--raised">
+    <div class="container grid grid--2">
+      <div>
+        <h2>From A Few Decorations To A Full Trail</h2>
+        <p>
+          What began as a small yard display has grown, year after year, into a full haunted trail
+          winding through the neighborhood, now featuring over 100 animatronics, 30 live
+          scarers, and 13 distinct scenes. Every prop, every scene, every scare is designed, built,
+          and run entirely by volunteers who spend months preparing for just a handful of nights each
+          October.
+        </p>
+        <p>
+          We're not a commercial haunted attraction. There's no corporate sponsor and no ticket
+          booth, just neighbors who love Halloween and love giving the community something fun,
+          spooky, and completely free to do together.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Why It's Free</h3>
+        <p>
+          We believe a great Halloween experience shouldn't come with a price tag. {site.shortName}
+          has always been free to attend. Building and maintaining the trail isn't free for
+          us, though, so if you'd like to help cover the cost of fog juice, new animatronics, and
+          repairs, donations are always welcome (and always optional). Look for the donation jar on
+          site, or find us on <a href={links.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">The Mission</p>
+      <h2>An Experience For All Of Davie County</h2>
+      <p class="section-lead">
+        Our goal every year is simple: build something that makes the whole community's Halloween a
+        little more memorable. That means a gentler, family-friendly front trail and inflatable path
+        for younger trick-or-treaters, and a much more intense back trail for guests who want the full
+        scare. Whichever version you choose, you'll leave with candy, a story to tell, and (hopefully)
+        your nerves intact.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-band {
+    padding-top: clamp(3rem, 7vw, 5rem);
+  }
+
+  .about-photo {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .about-photo :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .about-photo figcaption {
+    padding: 0.9rem 1.25rem;
+    font-size: 0.85rem;
+    color: var(--color-text-faint);
+    border-top: 1px solid var(--color-border);
+  }
+</style>

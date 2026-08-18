@@ -1,0 +1,109 @@
+---
+import { site, location, links } from "../data/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div>
+      <p class="site-footer__brand">{site.shortName}</p>
+      <p>{location.addressFull}</p>
+      <p class="site-footer__muted">Free admission &middot; donations welcome</p>
+    </div>
+
+    <div>
+      <p class="site-footer__heading">Explore</p>
+      <ul class="site-footer__links">
+        <li><a href="/about/">About</a></li>
+        <li><a href="/attractions/">Attractions</a></li>
+        <li><a href="/location/">Location</a></li>
+        <li><a href="/faqs/">FAQs</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="site-footer__heading">Follow &amp; Support</p>
+      <ul class="site-footer__links">
+        <li><a href={links.facebook} target="_blank" rel="noopener noreferrer">Facebook</a></li>
+        {links.venmo && <li><a href={`https://venmo.com/${links.venmo.replace("@", "")}`} target="_blank" rel="noopener noreferrer">Venmo: {links.venmo}</a></li>}
+        {links.cashapp && <li><a href={`https://cash.app/${links.cashapp}`} target="_blank" rel="noopener noreferrer">Cash App: {links.cashapp}</a></li>}
+      </ul>
+    </div>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <p>&copy; {year} {site.name}. Made with (fake) blood, sweat, and fog machines by local volunteers.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg-raised);
+    padding-block: 3rem 1.5rem;
+  }
+
+  .site-footer__grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .site-footer__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .site-footer__brand {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--color-pumpkin-bright);
+    margin-bottom: 0.5rem;
+  }
+
+  .site-footer__muted {
+    color: var(--color-text-faint);
+    font-size: 0.9rem;
+  }
+
+  .site-footer__heading {
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--color-text-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  .site-footer__links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .site-footer__links a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .site-footer__links a:hover {
+    color: var(--color-pumpkin-bright);
+  }
+
+  .site-footer__bottom {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-faint);
+    font-size: 0.85rem;
+  }
+
+  .site-footer__bottom p {
+    margin: 0;
+    color: inherit;
+  }
+</style>
