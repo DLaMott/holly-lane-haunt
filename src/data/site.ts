@@ -9,7 +9,7 @@ export const site = {
   tagline: "Mocksville's Free Community Haunted Trail",
   description:
     "A free, volunteer-run haunted trail in Mocksville, NC featuring 100+ animatronics, 30 scarers, and 14 terrifying scenes. Open to the public, free admission, donations welcome.",
-  url: "https://holly-lane-haunt.vercel.app", // TODO: update once custom domain is connected
+  url: "https://hollylanehaunt.com",
 };
 
 export const stats = [
