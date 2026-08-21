@@ -8,14 +8,27 @@ import PressStrip from "../components/PressStrip.astro";
 import { site, stats, location, eventDates, links } from "../data/site";
 import heroPhoto from "../assets/scenes/crowley3.jpg";
 
-const jsonLd = {
+// Mocksville, NC is Eastern time and the trail only runs in October, before
+// DST ends, so the -04:00 (EDT) offset is safe to hardcode for every night.
+const eventImage = new URL("/og-image.png", Astro.site).toString();
+const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
+
+const eventNights = eventDates.announced
+  ? [...eventDates.weekendBefore, ...eventDates.weekendOf]
+  : [];
+
+const jsonLd = eventNights.map((night) => ({
   "@context": "https://schema.org",
   "@type": "Event",
   name: site.name,
   description: site.description,
+  startDate: `${night.date}T18:30:00-04:00`,
+  endDate: `${night.date}T22:00:00-04:00`,
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
   isAccessibleForFree: true,
+  image: [eventImage],
+  url: pageUrl,
   location: {
     "@type": "Place",
     name: site.name,
@@ -39,13 +52,19 @@ const jsonLd = {
     url: site.url,
     sameAs: [links.facebook],
   },
+  performer: {
+    "@type": "PerformingGroup",
+    name: `${site.name} Scare Actors`,
+  },
   offers: {
     "@type": "Offer",
     price: "0",
     priceCurrency: "USD",
     availability: "https://schema.org/InStock",
+    validFrom: `${eventDates.year}-01-01T00:00:00-05:00`,
+    url: pageUrl,
   },
-};
+}));
 ---
 
 <BaseLayout title={site.name} jsonLd={jsonLd}>
