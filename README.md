@@ -43,6 +43,4 @@ npm run preview   # preview the production build
 
 ## Deployment
 
-This is a fully static site. Deploy the `dist/` output anywhere, or connect the repo directly to [Vercel](https://vercel.com) (it auto-detects Astro, no config needed). Once deployed, point your custom domain (`holly-lane-haunt.com`) at the Vercel project in the Vercel dashboard's Domains settings.
-
-After deploying, it's worth running the live site through [Google's Rich Results Test](https://search.google.com/test/rich-results) (to confirm the Event/FAQPage structured data) and a Lighthouse audit in Chrome DevTools.
+This is a fully static site. Deploy the `dist/` output anywhere, (it auto-detects Astro, no config needed). Once deployed, point your custom domain (`holly-lane-haunt.com`) at the Vercel project in the Vercel dashboard's Domains settings.
